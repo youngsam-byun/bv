@@ -1,12 +1,9 @@
 package config.dev;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -16,8 +13,10 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
  */
 
 @Configuration
-@PropertySource(value = { "classpath:property/application.properties","classpath:labels/label.properties","classpath:messages/message.properties","classpath:validations/validation.properties" })
+@Import(value = {DataSourceConfig_DEV.class})
+@PropertySource(value = {"classpath:property/application.properties","classpath:labels/label.properties", "classpath:messages/message.properties","classpath:validations/validation.properties","classpath:locale/locale.properties"})
 @Profile("dev")
+@ComponentScan(basePackages = {"com.ys.app"})
 public class RootConfig_DEV {
 
     public static final String DEFAULT_ENCODING = "UTF-8";

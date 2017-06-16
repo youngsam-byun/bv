@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -100,7 +101,9 @@ public class ArticleController {
         modelAndView.addObject(ARTICLE_DTO_LIST,articleDTOList);
         modelAndView.addObject(PAGINATION,utilPagination);
 
-        modelAndView.setViewName(FOLDER+ PAGE_LIST);
+        //modelAndView.setViewName(FOLDER+ PAGE_LIST);
+        modelAndView.setViewName("default");
+
         return modelAndView;
     }
 

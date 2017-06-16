@@ -2,10 +2,7 @@ package config.dev;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -15,6 +12,8 @@ import javax.sql.DataSource;
 /**
  * Created by byun.ys on 4/12/2017.
  */
+
+
 
 @Configuration
 @PropertySource("classpath:db/db_dev.properties")
@@ -39,11 +38,6 @@ public class DataSourceConfig_DEV {
 
     @Value("${jdbc.maxTotal}")
     private static int maxTotal;
-
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourceConfig() {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
 
     @Bean
     public static DataSource dataSource() {

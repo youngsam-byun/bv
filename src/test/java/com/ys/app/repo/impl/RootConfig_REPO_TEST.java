@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 @Configuration
 @Import(value = {DataSourceConfig_DEV.class})
 @ComponentScan(basePackages = { "com.ys.app.repo" })
-@TestPropertySource(value = { "classpath:property/application.properties","classpath:labels/label.properties","classpath:messages/message.properties","classpath:validations/validation.properties" })
+@TestPropertySource(value = {"classpath:property/application.properties","classpath:labels/label.properties", "classpath:messages/message.properties","classpath:validations/validation.properties" })
 public class RootConfig_REPO_TEST extends WebMvcConfigurationSupport {
 
 	private static final String DEFAULT_ENCODING = "UTF-8";

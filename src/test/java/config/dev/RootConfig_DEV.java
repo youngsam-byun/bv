@@ -14,7 +14,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
  */
 
 @Configuration
-@PropertySource(value = { "classpath:property/application.properties","classpath:labels/label.properties","classpath:messages/message.properties","classpath:validations/validation.properties" })
+@PropertySource(value = {"classpath:property/application.properties","classpath:labels/label.properties", "classpath:messages/message.properties","classpath:validations/validation.properties" })
 @Profile("dev")
 public class RootConfig_DEV {
 

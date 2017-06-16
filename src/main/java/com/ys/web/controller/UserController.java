@@ -91,7 +91,8 @@ public class UserController {
 
     @GetMapping(value = {"/login"})
     private ModelAndView home(ModelAndView modelAndview) {
-        modelAndview.setViewName(FOLDER + PAGE_LOGIN);
+        //modelAndview.setViewName(FOLDER + PAGE_LOGIN);
+        modelAndview.setViewName("login");
         return modelAndview;
     }
 
