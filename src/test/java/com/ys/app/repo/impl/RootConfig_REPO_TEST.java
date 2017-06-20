@@ -1,7 +1,7 @@
 package com.ys.app.repo.impl;
 
 
-import config.dev.DataSourceConfig_DEV;
+import com.ys.config.dev.DataSourceConfig_DEV;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 @Configuration
 @Import(value = {DataSourceConfig_DEV.class})
 @ComponentScan(basePackages = { "com.ys.app.repo" })
-@TestPropertySource(value = {"classpath:property/application.properties","classpath:labels/label.properties", "classpath:messages/message.properties","classpath:validations/validation.properties" })
+@TestPropertySource(value = {"classpath:conf/property/app.properties", "classpath:conf/labels/label.properties", "classpath:conf/messages/message.properties", "classpath:conf/validations/validation.properties"})
 public class RootConfig_REPO_TEST extends WebMvcConfigurationSupport {
 
 	private static final String DEFAULT_ENCODING = "UTF-8";
@@ -29,7 +29,7 @@ public class RootConfig_REPO_TEST extends WebMvcConfigurationSupport {
 	@Bean(name = "messageSource")
 	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setBasenames("classpath:labels","classpath:messages","classpath:validations");
+		messageSource.setBasenames("classpath:conf.labels","classpath:conf.messages","classpath:conf.validations");
 		messageSource.setDefaultEncoding(DEFAULT_ENCODING);
 		return messageSource;
 	}

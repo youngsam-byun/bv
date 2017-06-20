@@ -79,7 +79,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @Autowired
-    private CategoryController(CategoryService categoryService) {
+    public CategoryController(CategoryService categoryService) {
 
         this.categoryService = categoryService;
         if(pageSize==null)

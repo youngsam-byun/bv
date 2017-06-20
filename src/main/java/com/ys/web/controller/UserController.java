@@ -77,8 +77,8 @@ public class UserController {
     private UserService userService;
     private PasswordUpdateFormValidator passwordUpdateFormValidator;
 
-    @Value("${resetExpiration}")
-    private long resetExpiration=3600000;
+    @Value("${resetExpiration:3600000}")
+    private long resetExpiration;
 
     @Autowired
     public UserController(UserService userService, PasswordUpdateFormValidator passwordUpdateFormValidator) {

@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>bv</name>
-	<description>spring boot config for best practice demo </description>
+	<description>spring boot com.ys.config for best practice demo</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -123,16 +123,18 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
 			<version>${javax.servlet.jsp-api.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 
 
-		<!-- apache tiles -->
+		<!-- apaconfig.tilesiles -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-servlet</artifactId>
@@ -213,6 +215,13 @@
 			<artifactId>hamcrest-library</artifactId>
 			<version>${hamcrest-library.version}</version>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>4.3.9.RELEASE</version>
 		</dependency>
 
 	</dependencies>

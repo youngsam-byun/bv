@@ -1,4 +1,4 @@
-package config.dev;
+package com.ys.config.dev;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -62,7 +62,7 @@ public class ChildConfig_DEV extends WebMvcConfigurerAdapter{
     @Bean
     public TilesConfigurer tilesConfigurer() {
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
-        tilesConfigurer.setDefinitions(new String[] { "classpath:tiles/layout.xml" });
+        tilesConfigurer.setDefinitions(new String[] { "classpath:conf.tiles/layout.xml" });
         return tilesConfigurer;
     }
 
@@ -90,7 +90,7 @@ public class ChildConfig_DEV extends WebMvcConfigurerAdapter{
     @Bean
     public LocaleChangeInterceptor localChangeInterceptor() {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-        localeChangeInterceptor.setParamName("locale");
+        localeChangeInterceptor.setParamName("conf/locale");
         return localeChangeInterceptor;
     }
 

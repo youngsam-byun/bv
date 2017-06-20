@@ -73,7 +73,7 @@ public class NoteController {
     private NoteService noteService;
 
     @Autowired
-    private NoteController(NoteService noteService) {
+    public NoteController(NoteService noteService) {
 
         this.noteService = noteService;
         if(pageSize==null)

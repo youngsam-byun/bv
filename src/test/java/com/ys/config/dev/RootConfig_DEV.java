@@ -1,9 +1,10 @@
-package config.dev;
+package com.ys.config.dev;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -13,10 +14,8 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
  */
 
 @Configuration
-@Import(value = {DataSourceConfig_DEV.class})
-@PropertySource(value = {"classpath:property/application.properties","classpath:labels/label.properties", "classpath:messages/message.properties","classpath:validations/validation.properties","classpath:locale/locale.properties"})
+@PropertySource(value = {"classpath:conf/property/app.properties", "classpath:conf/labels/label.properties", "classpath:conf/messages/message.properties", "classpath:conf/validations/validation.properties"})
 @Profile("dev")
-@ComponentScan(basePackages = {"com.ys.app"})
 public class RootConfig_DEV {
 
     public static final String DEFAULT_ENCODING = "UTF-8";
@@ -29,7 +28,7 @@ public class RootConfig_DEV {
     @Bean(name = "messageSource")
     public static MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("classpath:labels","classpath:messages","classpath:validations");
+        messageSource.setBasenames("classpath:conf.labels","classpath:conf.messages","classpath:conf.validations");
         messageSource.setDefaultEncoding(DEFAULT_ENCODING);
         return messageSource;
     }

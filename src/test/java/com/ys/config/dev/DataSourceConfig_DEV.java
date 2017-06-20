@@ -1,4 +1,4 @@
-package config.dev;
+package com.ys.config.dev;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +17,7 @@ import javax.sql.DataSource;
  */
 
 @Configuration
-@PropertySource("classpath:db/db_dev.properties")
+@PropertySource("classpath:conf/db/db_dev.properties")
 @EnableTransactionManagement
 @Profile(value = {"dev"})
 public class DataSourceConfig_DEV {

@@ -77,7 +77,7 @@ public class CommentController {
     private CommentService commentService;
 
     @Autowired
-    private CommentController(CommentService commentService) {
+    public CommentController(CommentService commentService) {
         this.commentService = commentService;
 
         if(pageSize==null)

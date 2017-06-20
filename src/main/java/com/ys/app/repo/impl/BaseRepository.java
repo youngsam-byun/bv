@@ -19,19 +19,19 @@ import java.util.Map;
 @SuppressWarnings(value = {"unchecked","WeakerAccess"})
 public abstract class BaseRepository<T> {
     
-    private static final String KEY_T = "T";
-    private static final int INDEX = 0;
-    private static final String TABLE = "table";
-    private static final String COLUMN_NAME = "columnName";
-    private static final String COLUMN_VALUE = "value";
-    private static final String ID = "id";
-    private static final String KEYWORD = "keyword";
-    private static final String G_GET_LIST_ALL = "G_getListAll";
-    private static final String G_READ_BY_COLUMN = "G_readByColumn";
-    private static final String G_READ_BY_ID = "G_readById";
-    private static final String G_DELETE_BY_ID = "G_deleteById";
-    private static final String G_DELETE_BY_UPDATE_ID = "G_deleteByUpdateId";
-    private static final String G_DELETE_BY_KEY_WORD = "G_deleteByKeyWord";
+    private static  String KEY_T = "T";
+    private static  int INDEX = 0;
+    private static  String TABLE = "table";
+    private static  String COLUMN_NAME = "columnName";
+    private static  String COLUMN_VALUE = "value";
+    private static  String ID = "id";
+    private static  String KEYWORD = "keyword";
+    private static  String G_GET_LIST_ALL = "G_getListAll";
+    private static  String G_READ_BY_COLUMN = "G_readByColumn";
+    private static  String G_READ_BY_ID = "G_readById";
+    private static  String G_DELETE_BY_ID = "G_deleteById";
+    private static  String G_DELETE_BY_UPDATE_ID = "G_deleteByUpdateId";
+    private static  String G_DELETE_BY_KEY_WORD = "G_deleteByKeyWord";
 
     protected String table;
     protected DataSource dataSource;
@@ -44,12 +44,12 @@ public abstract class BaseRepository<T> {
         this.table = table;
     }
 
-    protected final int create(String storedProcedure, T t) {
+    protected  int create(String storedProcedure, T t) {
         SqlParameterSource sqlParameterSource = baseRowMapper.createParameterSource(t).addValue(TABLE, table);
         return executeForInt(storedProcedure, sqlParameterSource);
     }
 
-    protected final T readbyId(int id) {
+    protected  T readbyId(int id) {
         storedProcedure = G_READ_BY_ID;
         try {
 
@@ -61,7 +61,7 @@ public abstract class BaseRepository<T> {
         }
     }
 
-    protected final T readByColumn(String columnName, String value) {
+    protected  T readByColumn(String columnName, String value) {
 
         storedProcedure = G_READ_BY_COLUMN;
         try {
@@ -73,7 +73,7 @@ public abstract class BaseRepository<T> {
         }
     }
 
-    protected  final T readSimple(String procedureName, SimpleEntry<String, Object>... requiredParameters){
+    protected   T readSimple(String procedureName, SimpleEntry<String, Object>... requiredParameters){
         try {
             SqlParameterSource sqlParameterSource = createParameters(requiredParameters);
             return execute(procedureName, sqlParameterSource);
@@ -84,44 +84,44 @@ public abstract class BaseRepository<T> {
 
     }
 
-    protected final void executeSimple(String procedureName, SimpleEntry<String, Object>... requiredParameters) {
+    protected  void executeSimple(String procedureName, SimpleEntry<String, Object>... requiredParameters) {
         SqlParameterSource sqlParameterSource = createParameters(requiredParameters);
         simpleJdbcCall= new SimpleJdbcCall(dataSource).withProcedureName(procedureName);
         simpleJdbcCall.execute(sqlParameterSource);
     }
 
-    protected final <E> E executeStoredProcedure(String procedureName, SimpleEntry<String, Object>... requiredParameters) {
+    protected  <E> E executeStoredProcedure(String procedureName, SimpleEntry<String, Object>... requiredParameters) {
         SqlParameterSource sqlParameterSource = createParameters(requiredParameters);
         return (E) execute(procedureName, sqlParameterSource);
     }
 
-    protected final int executeStoredProcedureForObject(String procedureName, SimpleEntry<String, Object>... requiredParameters) {
+    protected  int executeStoredProcedureForObject(String procedureName, SimpleEntry<String, Object>... requiredParameters) {
         SqlParameterSource sqlParameterSource = createParameters(requiredParameters);
         return  executeForInt(procedureName, sqlParameterSource);
     }
 
-    protected final int update(String storedProcedure, T t) {
+    protected  int update(String storedProcedure, T t) {
         SqlParameterSource sqlParameterSource = baseRowMapper.updateParameterSource(t).addValue(TABLE, table);
         return executeForInt(storedProcedure, sqlParameterSource);
     }
 
-    protected final int deleteById(int id) {
+    protected  int deleteById(int id) {
         SqlParameterSource sqlParameterSource = createParameters(new SimpleEntry<>(ID, id));
         return executeForInt(G_DELETE_BY_ID, sqlParameterSource);
     }
 
-    protected final int deleteByUpdateId(int id) {
+    protected  int deleteByUpdateId(int id) {
         SqlParameterSource sqlParameterSource = createParameters(new SimpleEntry<>(ID, id));
         return executeForInt(G_DELETE_BY_UPDATE_ID, sqlParameterSource);
     }
 
-    protected final int deleteBySearch(String keyword) {
+    protected  int deleteBySearch(String keyword) {
         SqlParameterSource sqlParameterSource = createParameters(new SimpleEntry<>(KEYWORD, keyword));
         return executeForInt(G_DELETE_BY_KEY_WORD, sqlParameterSource);
     }
 
 
-    protected final List<T> getList(String storedProcedure, SimpleEntry<String, Object>... requiredParameters) {
+    protected  List<T> getList(String storedProcedure, SimpleEntry<String, Object>... requiredParameters) {
 
         try {
             SqlParameterSource sqlParameterSource = createParameters(requiredParameters);
@@ -142,7 +142,7 @@ public abstract class BaseRepository<T> {
     }
 
 
-    public final int getTotal(String storedProcedure, SimpleEntry<String, Object>... requiredParameters) {
+    public  int getTotal(String storedProcedure, SimpleEntry<String, Object>... requiredParameters) {
 
         try {
             SqlParameterSource sqlParameterSource = createParameters(requiredParameters);
@@ -154,7 +154,7 @@ public abstract class BaseRepository<T> {
 
     }
 
-    protected  final  List<T> getListAll(){
+    protected    List<T> getListAll(){
         simpleJdbcCall=new SimpleJdbcCall(dataSource).withProcedureName(G_GET_LIST_ALL).returningResultSet(KEY_T,baseRowMapper);
         Map<String, Object> resultHashMap = simpleJdbcCall.execute(new MapSqlParameterSource().addValue(TABLE,table));
 

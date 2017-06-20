@@ -3,7 +3,7 @@ package com.ys.web.controller;
 import com.ys.app.model.Role;
 import com.ys.app.model.User;
 import com.ys.app.security.factory.WithCustomMockUser;
-import config.dev.RootConfig_DEV;
+import com.ys.config.dev.RootConfig_DEV;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;

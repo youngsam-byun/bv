@@ -17,8 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
@@ -75,15 +75,20 @@ public class ArticleController {
 
 
 
-
-
     @Value("${page.size?:10}")
-    private Integer pageSize=10;
-
-    private ArticleService articleService;
+    private Integer pageSize;
 
     @Autowired
-    private ArticleController(ArticleService articleService) {
+    private ArticleService articleService;
+
+    @PostConstruct
+    public  void init(){
+        String s="";
+    }
+
+
+    @Autowired
+    public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
     }
 

@@ -1,9 +1,8 @@
-package config.dev;
+package com.ys.config.dev;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -16,31 +15,30 @@ import javax.sql.DataSource;
 
 
 @Configuration
-@PropertySource("classpath:db/db_dev.properties")
+@PropertySource("classpath:conf/db/db_dev.properties")
 @EnableTransactionManagement
-@Profile(value = {"dev"})
 public class DataSourceConfig_DEV {
 
     @Value("${jdbc.driverClassName}")
-    private static String driverClassName;
+    private  String driverClassName;
 
     @Value("${jdbc.url}")
-    private static String url;
+    private  String url;
 
     @Value("${jdbc.username}")
-    private static String username;
+    private  String username;
 
     @Value("${jdbc.password}")
-    private static String password;
+    private  String password;
 
     @Value("${jdbc.initialSize}")
-    private static int intialSize;
+    private  int intialSize;
 
     @Value("${jdbc.maxTotal}")
-    private static int maxTotal;
+    private  int maxTotal;
 
-    @Bean
-    public static DataSource dataSource() {
+   @Bean
+    public DataSource dataSource() {
 
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName(driverClassName);

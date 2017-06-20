@@ -4,7 +4,7 @@ import com.ys.app.exception.CustomException;
 import com.ys.app.model.User;
 import com.ys.app.security.factory.WithCustomMockUser;
 import com.ys.app.security.util.UtilSecurityContextTest;
-import config.dev.RootConfig_DEV;
+import com.ys.config.dev.RootConfig_DEV;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;

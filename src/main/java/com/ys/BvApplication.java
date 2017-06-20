@@ -1,29 +1,53 @@
 package com.ys;
 
-import config.dev.AppInitializer_DEV;
-import org.springframework.boot.SpringApplication;
+import com.ys.config.dev.RootConfig_DEV;
+import com.ys.config.dev.ServletConfig_DEV;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 
-@ComponentScan("config")
+import java.util.Arrays;
+
 @SpringBootApplication
-@EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class})
 public class BvApplication {
 
-	public static void main(String[] args) {
-
-		//SpringApplicationBuilder springApplicationBuilder= new SpringApplicationBuilder(BvApplication.class);
-
-				//.parent(RootConfig_DEV.class).child(ServletConfig_DEV.class);
-		//		springApplicationBuilder.run();
 
 
-		SpringApplication.run(BvApplication.class,args);
+    static ConfigurableApplicationContext applicationContext;
 
-	}
+    public static void main(String[] args) {
+
+
+//        applicationContext=SpringApplication.run(BvApplication.class,args);
+
+        applicationContext=new SpringApplicationBuilder()
+                .sources(BvApplication.class)
+                .parent(RootConfig_DEV.class)
+                .child(ServletConfig_DEV.class)
+                .run(args);
+
+        applicationContext.setId("child1");
+        ((ConfigurableApplicationContext)applicationContext.getParent()).setId("parent");
+
+        ApplicationContext current = applicationContext;
+        while (current != null) {
+            System.out.println("---------------------------------------------------------------------------");
+            System.out.println("Context: " + current.getId());
+            String[] beanNames= current.getBeanDefinitionNames();
+            Arrays.sort(beanNames);
+            for (String beanName : beanNames) {
+                //if (beanName.contains("bean")) {
+                    System.out.println(beanName);
+                //}
+            }
+            System.out.println("---------------------------------------------------------------------------");
+            current = current.getParent();
+        }
+    }
+
 
 }

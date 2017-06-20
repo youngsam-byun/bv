@@ -11,9 +11,11 @@ import com.ys.app.util.UtilPagination;
 import com.ys.app.util.UtilValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ import static com.ys.app.security.service.CustomUserDetailsService.extractUser;
  * Created by byun.ys on 4/17/2017.
  */
 
-@SuppressWarnings({"ALL", "PointlessBooleanExpression"})
+
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
@@ -49,6 +51,12 @@ public class ArticleServiceImpl implements ArticleService {
         role = Role.USER;
     }
 
+
+    @PostConstruct
+    public  void init(){
+        String s="";
+
+    }
 
     @Override
     public void setTable(String table) {

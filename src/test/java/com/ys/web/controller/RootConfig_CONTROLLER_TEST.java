@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
  * Created by byun.ys on 4/18/2017.
  */
 @Configuration
-@PropertySource(value = {"classpath:property/application.properties","classpath:labels/label.properties", "classpath:messages/message.properties","classpath:validations/validation.properties","classpath:log4j/log4j.properties"})
+@PropertySource(value = {"classpath:conf/property/app.properties", "classpath:conf/labels/label.properties", "classpath:conf/messages/message.properties", "classpath:conf/validations/validation.properties", "classpath:conf/log4j/log4j.properties"})
 @EnableWebSecurity
 public class RootConfig_CONTROLLER_TEST {
     private static final String DEFAULT_ENCODING = "UTF-8";
@@ -25,7 +25,7 @@ public class RootConfig_CONTROLLER_TEST {
     @Bean(name = "messageSource")
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("classpath:properties","classpath:labels","classpath:messages","classpath:validations");
+        messageSource.setBasenames("classpath:properties","classpath:conf.labels","classpath:conf.messages","classpath:conf.validations");
         messageSource.setDefaultEncoding(DEFAULT_ENCODING);
         return messageSource;
     }
